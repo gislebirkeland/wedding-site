@@ -6,9 +6,10 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     spouse_first_name = models.CharField(max_length=255)
     spouse_last_name = models.CharField(max_length=255)
-    phone = models.IntegerField()
+    phone = models.IntegerField(null=True)
 
 class Event(models.Model):
+    owner = models.ForeignKey(User)
     date = models.DateField()
     zipcode = models.IntegerField()
     city = models.CharField(max_length=100)
@@ -25,7 +26,14 @@ class Business(models.Model):
     logo = models.ImageField()
     credit = models.IntegerField()
 
+class PriceRequest(models.Model):
+    businesses = models.ManyToMany(Business, related_name="price_request")
+    event = models.ForeignKey(Event)
+    form = models.IntegerField()
+
 class Quote(models.Model):
+    price_request = models.ForeignKey(PriceRequest)
+    business = models.ForeignKey(business)
     price = models.IntegerField()
     description = models.CharField(max_length=255)
     photo1 = models.ImageField()
@@ -34,5 +42,4 @@ class Quote(models.Model):
     photo4 = models.ImageField()
     photo5 = models.ImageField()
 
-class PriceRequest(models.Model):
-    form = models.IntegerField()
+#class BusinessUser(AbstractUser):

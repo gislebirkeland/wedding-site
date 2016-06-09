@@ -134,7 +134,7 @@ INSTALLED_APPS = (
 #    'image_cropping', # -> report missing dependency (easy-thumbnails)
 
     # Maybe needed for deployment only?
-#    'compressor',
+    'compressor',
     'django_forms_bootstrap',
 #    'rest_framework',
     'jsonify',
@@ -217,7 +217,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'compressor.finders.CompressorFinder',
+    'compressor.finders.CompressorFinder',
 )
 ########## END STATIC FILE CONFIGURATION
 
